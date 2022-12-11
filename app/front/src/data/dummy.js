@@ -22,6 +22,10 @@ import product5 from './product5.jpg';
 import product6 from './product6.jpg';
 import product7 from './product7.jpg';
 import product8 from './product8.jpg';
+import { GrValidate } from 'react-icons/gr';
+import { GiNinjaMask } from 'react-icons/gi';
+import { GiIronMask } from 'react-icons/gi';
+import { SiVivaldi } from 'react-icons/si';
 
 export const gridOrderImage = (props) => (
   <div>
@@ -474,7 +478,7 @@ export const links = [
     title: 'Dashboard',
     links: [
       {
-        name: 'ecommerce',
+        name: 'Security',
         icon: <FiShoppingBag />,
       },
     ],
@@ -484,15 +488,11 @@ export const links = [
     title: 'Pages',
     links: [
       {
-        name: 'orders',
-        icon: <AiOutlineShoppingCart />,
-      },
-      {
-        name: 'employees',
+        name: 'Members',
         icon: <IoMdContacts />,
       },
       {
-        name: 'customers',
+        name: 'Requests',
         icon: <RiContactsLine />,
       },
     ],
@@ -501,20 +501,8 @@ export const links = [
     title: 'Apps',
     links: [
       {
-        name: 'calendar',
+        name: 'Video Live',
         icon: <AiOutlineCalendar />,
-      },
-      {
-        name: 'kanban',
-        icon: <BsKanban />,
-      },
-      {
-        name: 'editor',
-        icon: <FiEdit />,
-      },
-      {
-        name: 'color-picker',
-        icon: <BiColorFill />,
       },
     ],
   },
@@ -615,89 +603,80 @@ export const chatData = [
 
 export const earningData = [
   {
-    icon: <MdOutlineSupervisorAccount />,
+    icon: <GrValidate />,
     amount: '39,354',
     percentage: '-4%',
-    title: 'Customers',
+    title: 'Valid',
     iconColor: '#03C9D7',
-    iconBg: '#E5FAFB',
+    iconBg: 'rgb(70, 201, 15)',
     pcColor: 'red-600',
   },
   {
-    icon: <BsBoxSeam />,
+    icon: <GiNinjaMask />,
     amount: '4,396',
     percentage: '+23%',
-    title: 'Products',
+    title: 'Intruder',
     iconColor: 'rgb(255, 244, 229)',
-    iconBg: 'rgb(254, 201, 15)',
+    iconBg: 'rgb(255, 51, 51)',
     pcColor: 'green-600',
   },
   {
-    icon: <FiBarChart />,
+    icon: <GiIronMask />,
     amount: '423,39',
     percentage: '+38%',
-    title: 'Sales',
+    title: 'Unknown',
     iconColor: 'rgb(228, 106, 118)',
     iconBg: 'rgb(255, 244, 229)',
 
     pcColor: 'green-600',
-  },
-  {
-    icon: <HiOutlineRefresh />,
-    amount: '39,354',
-    percentage: '-12%',
-    title: 'Refunds',
-    iconColor: 'rgb(0, 194, 146)',
-    iconBg: 'rgb(235, 250, 242)',
-    pcColor: 'red-600',
   },
 ];
 
 export const recentTransactions = [
   {
-    icon: <BsCurrencyDollar />,
-    amount: '+$350',
-    title: 'Paypal Transfer',
-    desc: 'Money Added',
+    icon: <GiNinjaMask />,
+    amount: '350',
+    title: 'Intrusion',
+    desc: 'Person not accepted',
     iconColor: '#03C9D7',
     iconBg: '#E5FAFB',
     pcColor: 'green-600',
   },
   {
-    icon: <BsShield />,
-    amount: '-$560',
-    desc: 'Bill Payment',
-    title: 'Wallet',
+    icon: <GiNinjaMask />,
+    amount: '560',
+    desc: 'Person not accepted',
+    title: 'Intrusion',
     iconColor: 'rgb(0, 194, 146)',
     iconBg: 'rgb(235, 250, 242)',
     pcColor: 'red-600',
   },
   {
-    icon: <FiCreditCard />,
-    amount: '+$350',
-    title: 'Credit Card',
-    desc: 'Money reversed',
+    icon: <GrValidate />,
+    amount: '350',
+    title: 'Validate',
+    desc: 'Employee arrived',
     iconColor: 'rgb(255, 244, 229)',
     iconBg: 'rgb(254, 201, 15)',
 
     pcColor: 'green-600',
   },
   {
-    icon: <TiTick />,
-    amount: '+$350',
-    title: 'Bank Transfer',
-    desc: 'Money Added',
+    icon: <GiIronMask />,
+    amount: '350',
+    title: 'Unknown',
+    desc: 'Undefinied Object',
 
     iconColor: 'rgb(228, 106, 118)',
     iconBg: 'rgb(255, 244, 229)',
     pcColor: 'green-600',
   },
   {
-    icon: <BsCurrencyDollar />,
-    amount: '-$50',
+    icon: <GiNinjaMask />,
+    amount: '50',
     percentage: '+38%',
-    title: 'Refund',
-    desc: 'Payment Sent',
+    title: 'Intrusion',
+    desc: 'Person not accepted',
     iconColor: '#03C9D7',
     iconBg: '#E5FAFB',
     pcColor: 'red-600',
