@@ -501,7 +501,7 @@ export const links = [
     title: 'Apps',
     links: [
       {
-        name: 'Video Live',
+        name: 'VideoLive',
         icon: <AiOutlineCalendar />,
       },
     ],
