@@ -10,9 +10,9 @@ import { ContextProvider } from './contexts/ContextProvider';
 ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
-      <BrowserRouter>
+      
         <LoginPage></LoginPage>
-      </BrowserRouter>
+      
     </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),
