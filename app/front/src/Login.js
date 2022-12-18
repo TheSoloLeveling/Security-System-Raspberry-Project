@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import {Form,Button} from 'react-bootstrap'
+import {Button, Form} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './main.css'
 import { useNavigate } from 'react-router-dom'
-import App from './App'
+import App  from './App'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
 
@@ -16,11 +16,8 @@ const LoginPage=()=>{
     const {register,handleSubmit,reset,formState:{errors}}=useForm()
     const [isLogin, setIsLogin] = useState(false)
     
-    
-
-
     const loginUser=(data)=>{
-       console.log(data)
+       console.log("data", data)
 
        const requestOptions={
            method:"POST",
@@ -91,6 +88,7 @@ const LoginPage=()=>{
                 </form>
             </div>
         </div>
+        
         }
         
     </div>

@@ -438,9 +438,8 @@ export const customersGrid = [
 ];
 
 export const employeesGrid = [
-  { headerText: 'Employee',
+  { headerText: 'Status',
     width: '150',
-    template: gridEmployeeProfile,
     textAlign: 'Center' },
   { field: 'Name',
     headerText: '',
@@ -488,13 +487,18 @@ export const links = [
     title: 'Pages',
     links: [
       {
-        name: 'Members',
+        name: 'Participants',
+        icon: <RiContactsLine />,
+      },
+      {
+        name: 'Keypad Details',
         icon: <IoMdContacts />,
       },
       {
-        name: 'Requests',
+        name: 'Camera Details',
         icon: <RiContactsLine />,
       },
+      
     ],
   },
   {
@@ -502,6 +506,10 @@ export const links = [
     links: [
       {
         name: 'VideoLive',
+        icon: <AiOutlineCalendar />,
+      },
+      {
+        name: 'CameraLive',
         icon: <AiOutlineCalendar />,
       },
     ],
@@ -1463,7 +1471,7 @@ export const customersData = [
 export const employeesData = [
   {
     EmployeeID: 1,
-    Name: 'Nancy Davolio',
+    Name: 'Intruder',
     Title: 'Sales Representative',
     HireDate: '01/02/2021',
     Country: 'USA',

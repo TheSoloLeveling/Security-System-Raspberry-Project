@@ -5,6 +5,11 @@
 
 #define DATA_SIZE 1000
 
+#include<SoftwareSerial.h>
+
+#define TxD 1
+#define RxD 0
+
 const byte ROWS = 4; //four rows
 const byte COLS = 4; //four columns
 
@@ -21,41 +26,32 @@ int myInt = 0;
 byte digitCount = 0;
 //Create an object of keypad
 Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
-
+SoftwareSerial bluetoothSerial(TxD, RxD);
+char c;
 void setup(){
+  bluetoothSerial.begin(9600);
   Serial.begin(9600);
-  Serial.println("Enter a 4 digit number");
 }
   
 void loop(){
   char Key = keypad.getKey();
-
+  
   if (Key >= '0' && Key <= '9'){
     //Serial.println(Key);
       myInt = (myInt * 10) + Key -'0';
       digitCount++;
     if (digitCount == 4) {
-      Serial.print("You entered: ");
-      Serial.println(myInt);
-      
-      FILE * fPtr;
-      fPtr = fopen("data/file1.txt", "w");
-      if(fPtr == NULL)
-        {
-          printf("Unable to create file.\n");
-          exit(EXIT_FAILURE);
+        Serial.println(myInt);
+        if(bluetoothSerial.available()){
+          c = bluetoothSerial.read();
         }
-      fprintf(fPtr, "%d", myInt);
-      fclose(fPtr);
-
-      printf("File created and saved successfully. :) \n");
-      
       digitCount = 0;
       myInt = 0;
 
     }
   }
 
-  
+
+
 
 }

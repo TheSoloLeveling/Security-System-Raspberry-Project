@@ -1,0 +1,9 @@
+gate,password,timestamp
+Intruder,1111,12:12:34
+Intruder,1444,12:12:44
+Valid,1111,12:13:22
+Intruder,1144,12:13:27
+Valid,1111,12:45:31
+Intruder,4444,12:45:41
+Valid,1111,12:53:00
+Intruder,1112,12:53:49

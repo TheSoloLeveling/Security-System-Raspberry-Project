@@ -69,9 +69,9 @@ const App = () => {
                 <Route path="/Security" element={(<Ecommerce />)} />
 
                 {/* pages  */}
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/Members" element={<Employees />} />
-                <Route path="/Requests" element={<Customers />} />
+                <Route path="/Camera Details" element={<Orders />} />
+                <Route path="/Keypad Details" element={<Employees />} />
+                <Route path="/Participants" element={<Customers />} />
 
                 {/* apps  */}
                 <Route path="/VideoLive" element={<Calendar />} />
