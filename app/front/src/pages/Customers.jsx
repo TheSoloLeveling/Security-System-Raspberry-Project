@@ -81,6 +81,8 @@ const conditionalRowStyles = [
 	},
 ];
 
+
+
 useEffect(() => {
   const timeout = setTimeout(() => {
     setRows(data);
@@ -97,7 +99,8 @@ useEffect(() => {
           columns={columns}
           data={data}
           progressPending={pending}
-          pagination
+          pagination 
+          paginationRowsPerPageOptions={[3]}
           customStyles={tableCustomStyles}
           conditionalRowStyles={conditionalRowStyles}
           />

@@ -3,7 +3,7 @@ import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page,
 import  DataTable, { createTheme } from "react-data-table-component"
 import { employeesData, employeesGrid } from '../data/dummy';
 import { Header } from '../components';
-import data from '../pages/data.json' 
+import data from '../pages/data2.json' 
 import { Border } from '@syncfusion/ej2-react-charts';
 
 const Orders = () => {
@@ -14,7 +14,7 @@ const Orders = () => {
   const columns =[
     {
       name: "Image Captured",
-      selector: (row) => row.image
+      cell: row => <img height="300px" width="256px" alt={"name"} src={row.image} />,
     },
     {
       name: "Time",
@@ -45,6 +45,9 @@ const Orders = () => {
         style: {
             paddingLeft: '8px', // override the cell padding for data cells
             paddingRight: '8px',
+            margin: '8px',
+            fontSize: '18px',
+            fontWeight: 'bold',
             justifyContent: 'center',
             borderrightStyle: 'solid',
 				    borderRightWidth: '3px',
@@ -89,7 +92,7 @@ useEffect(() => {
     <div className='p-6'>
       <div>
         <DataTable
-          title="Recordings of the gate keypad"
+          title="Recordings of the gate Camera"
           columns={columns}
           data={data}
           progressPending={pending}

@@ -1,0 +1,18 @@
+[
+    { 
+        "image": "http://localhost:8080/frame49.jpg",
+        "timestamp": "12:12:34"
+    },
+    {
+        "image": "http://localhost:8080/frame49.jpg",
+        "timestamp": "12:12:34"
+    },
+    {
+        "image": "http://localhost:8080/frame49.jpg",
+        "timestamp": "12:12:34"
+    },
+    {
+        "image": "http://localhost:8080/frame49.jpg",
+        "timestamp": "12:12:34"
+    }
+]
