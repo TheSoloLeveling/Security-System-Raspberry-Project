@@ -12,11 +12,13 @@ from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import jwt_required
 from participants import participant_ns
 from auth import auth_ns
+from config import DevConfig, ProdConfig
 
-def create_app(config):
+def create_app():
 
     app=Flask(__name__)
-    app.config.from_object(config)
+    
+    app.config.from_object(DevConfig)
     
     CORS(app)
 

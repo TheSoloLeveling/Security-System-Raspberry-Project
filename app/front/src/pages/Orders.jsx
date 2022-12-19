@@ -37,6 +37,7 @@ const Orders = () => {
             justifyContent: 'center',
             borderStyle: 'solid',
 				    borderWidth: '1px',
+            fontFamily:'Palatino',
             borderColor: 'rgba(183, 183, 183, 1)'
 				    
         },

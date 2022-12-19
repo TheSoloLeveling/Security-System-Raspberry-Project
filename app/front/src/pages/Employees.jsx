@@ -41,6 +41,7 @@ const Employees = () => {
             fontSize: '18px',
             fontWeight: 'bold',
             justifyContent: 'center',
+            fontFamily:'Palatino',
             borderStyle: 'solid',
 				    borderWidth: '1px',
             borderColor: 'rgba(183, 183, 183, 1)'

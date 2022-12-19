@@ -9,20 +9,36 @@ import { Border } from '@syncfusion/ej2-react-charts';
 const Customers = () => {
   const [pending, setPending] = React.useState(true);
   const [rows, setRows] = React.useState([]);
+  const [data, setData] = useState([])
   const [perPage, setPerPage] = useState(10)
+
+  async function fetchTableData() {
+    setPending(true)
+    const URL = "http://127.0.0.1:5000/participant/participants"
+    const response = await fetch(URL)
+
+    const participants = await response.json()
+    setData(participants)
+    setPending(false)
+  }
+
+  useEffect(() => {
+    fetchTableData()
+  }, [])
+  
 
   const columns =[
     {
-      name: "Status",
-      selector: (row) => row.gate
+      name: "Full Name",
+      selector: (row) => row.title
     },
     {
-      name: "Password",
-      selector: (row) => row.password
+      name: "Designation",
+      selector: (row) => row.description
     },
     {
-      name: "Date",
-      selector: (row) => row.timestamp
+      name: "Image Profil",
+      cell: row => <img height="100px" width="56px" alt={"name"} src={row.photo} />,
     }
   ]
 
@@ -38,6 +54,7 @@ const Customers = () => {
             paddingRight: '8px',
             fontSize: '18px',
             fontWeight: 'bold',
+            fontFamily:'Palatino',
             justifyContent: 'center',
             borderStyle: 'solid',
 				    borderWidth: '1px',
@@ -95,7 +112,7 @@ useEffect(() => {
     <div className='p-6'>
       <div>
         <DataTable
-          title="Recordings of the gate keypad"
+          title="All Valid Participants "
           columns={columns}
           data={data}
           progressPending={pending}

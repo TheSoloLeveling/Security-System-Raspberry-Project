@@ -2,8 +2,9 @@ from exts import db
 
 class Participant(db.Model):
     id=db.Column(db.Integer(),primary_key=True)
-    title=db.Column(db.String(),nullable=False)
-    description=db.Column(db.Text(),nullable=False)
+    title=db.Column(db.String(),nullable=False, unique=True)
+    description=db.Column(db.String(),nullable=False)
+    photo=db.Column(db.String(),nullable=False)
 
     def __repr__(self):
         return f"<Participant {self.title} >"
@@ -16,9 +17,10 @@ class Participant(db.Model):
         db.session.delete(self)
         db.session.commit()
 
-    def update(self,title,description):
+    def update(self,title,description, photo):
         self.title=title
         self.description=description
+        self.photo=photo
 
         db.session.commit()
 
