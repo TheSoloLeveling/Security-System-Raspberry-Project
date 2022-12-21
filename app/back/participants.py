@@ -40,6 +40,46 @@ class Signup(Resource):
 
         return jsonify({"message": "Participant created successfuly"})
 
+@participant_ns.route('/increment')
+class Signup(Resource):
+
+    def get(self):
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\un.txt", "r") as f:
+            integer = f.read()
+        print(integer)
+        integer = int(integer)
+        integer += 1
+        print(integer)
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\un.txt", "w") as f:
+            f.write(str(integer))
+
+        return jsonify({"message": "Unknown variable is inremented"})
+    
+@participant_ns.route('/getText')
+class Signup(Resource):
+
+    def get(self):
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\un.txt", "r") as f:
+            integer = f.read()
+        json_data = json.dumps(int(integer))
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\un.json", "w") as f:
+            json.dump(json_data, f)
+
+        return jsonify({"message": integer})
+
+@participant_ns.route('/resetText')
+class Signup(Resource):
+
+    def get(self):
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\un.txt", "w") as f:
+            f.write(str(0))
+
+        json_data = json.dumps(int("0"))
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\un.json", "w") as f:
+            json.dump(json_data, f)
+
+        return jsonify({"message": "Unknown variable is reset"})
+
 
 @participant_ns.route('/predict')
 class Signup(Resource):
@@ -118,7 +158,6 @@ class PartcipantsResource(Resource):
 
     @participant_ns.marshal_list_with(participant_model)
     @participant_ns.expect(participant_model)
-    
     def post(self):
         data = request.get_json()
 

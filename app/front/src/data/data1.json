@@ -1,27 +1,7 @@
 [
     {
-        "gate": "Valid",
-        "password": "1111",
-        "timestamp": "13:05:26"
-    },
-    {
         "gate": "Intruder",
-        "password": "5555",
-        "timestamp": "13:05:45"
-    },
-    {
-        "gate": "Intruder",
-        "password": "9999",
-        "timestamp": "14:02:12"
-    },
-    {
-        "gate": "Valid",
-        "password": "1111",
-        "timestamp": "16:02:12"
-    },
-    {
-        "gate": "Valid",
-        "password": "1111",
-        "timestamp": "17:02:12"
+        "password": "1456",
+        "timestamp": "15:50:38"
     }
 ]

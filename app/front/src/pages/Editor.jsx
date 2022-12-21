@@ -21,6 +21,14 @@ const Customers = () => {
  
   const [alertP, setAlertP] = useState("");
   
+  async function incrementData() {
+    
+    const URL = "http://127.0.0.1:5000/participant/increment"
+    const response = await fetch(URL)
+
+    const participants = await response.json()
+    
+  }
 
   async function fetchTableData() {
     setPending(true)
@@ -34,7 +42,10 @@ const Customers = () => {
 
   const loginUser=(image)=>{
     console.log("image", image)
-    
+    setValueP("Loading model, please wait a moment .....")
+    setShowAlertIntruder(false)
+    setShowAlertValid(false)
+    setShowAlertBasic(true)
     const requestOptions={
         method:"POST",
         headers:{
@@ -47,13 +58,19 @@ const Customers = () => {
     .then(res=>res.json())
     .then(data=>{
         setShowAlertValid(true);
+        setShowAlertIntruder(false)
         setShowAlertBasic(false)
+        if (data["predicted label"] == "Unknown"){
+          incrementData()
+        }
+          
         setAlertP("the person detected is : " + data["predicted label"])
         
         
     })
     .catch(error => {
       setShowAlertIntruder(true)
+      setShowAlertValid(false);
       setShowAlertBasic(false)
       setAlertP("Not Enough Memory, we are using weak Local machine :(  .Come back later")
       console.error(error);
@@ -167,19 +184,19 @@ useEffect(() => {
           {valueP}
         </div>
       )}
-      {showAlertIntruder && !showAlertValid && (
+      {showAlertIntruder && (
         <div className="bg-red-500 text-white p-4 rounded-md">
           {alertP}
         </div>
       )}
-      {showAlertValid && !showAlertIntruder && (
+      {showAlertValid && (
         <div className="bg-green-500 text-white p-4 rounded-md">
           {alertP}
         </div>
       )}
       <div>
         <DataTable
-          title="All Valid Participants "
+          title="Run Face Recognition  "
           columns={columns}
           data={reversedArray}
           progressPending={pending}

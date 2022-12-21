@@ -26,6 +26,7 @@ const Ecommerce = () => {
   const { setIsClicked, initialState } = useStateContext();
   const reversedArray = Object.values(gate).reverse();
   const firstFour = reversedArray.slice(0, 4);
+  
  
   async function fetchTableData() {
     
@@ -36,6 +37,15 @@ const Ecommerce = () => {
     setData(participants)
   }
 
+  async function getData() {
+    
+    const URL = "http://127.0.0.1:5000/participant/getText"
+    const response = await fetch(URL)
+
+    const participants = await response.json()
+    
+  }
+
 
   async function emptyJSON() {
     console.log("HI")
@@ -43,12 +53,17 @@ const Ecommerce = () => {
     const response = await fetch(URL)
 
     const participants = await response.json()
+
+    const URL1 = "http://127.0.0.1:5000/participant/resetText"
+    const response1 = await fetch(URL1)
+
+    const participants1 = await response.json()
     
   }
 
   useEffect(() => {
     fetchTableData()
-    
+    getData()
     
   }, [])
 
@@ -114,8 +129,12 @@ const Ecommerce = () => {
             <p className="text-xl font-semibold items-center">Recent Activity</p>
             
           </div>
-          <div className="mt-10 w-400 lg:w-400">
-            {firstFour.map((item) => (
+          
+          <div className="justify-center content-center self-center center mt-10 w-400 lg:w-800 items-center ">
+            {firstFour.length == 0 && (<div className='mt-12 text-gray-400 '> No Activity yet</div>)
+            
+            }
+            {firstFour && firstFour.map((item) => (
               <div key={item.timestamp} className="flex justify-between mt-4">
                 <div className="flex gap-4">
                   <button
@@ -133,8 +152,8 @@ const Ecommerce = () => {
                   </button>
                   <div>
                     <p className="text-md font-semibold">{item.gate}</p>
-                    <p className="text-sm text-gray-400">captured time : </p>
-                    <p className="text-sm text-gray-400">{item.timestamp}</p>
+                    <p className="text-sm text-gray-400">captured time :  {item.timestamp}</p>
+                    
                   </div>
                 </div>
                 <p className={"text-gray-400"}>
@@ -166,14 +185,7 @@ const Ecommerce = () => {
             </div>
           </div>
         </div>
-        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
-          <div className="flex justify-between items-center gap-2 mb-10">
-            <p className="text-xl font-semibold">Activity Overview</p>
-          </div>
-          <div className="md:w-full overflow-auto">
-            <LineChart />
-          </div>
-        </div>
+      
       </div>
 
     </div>

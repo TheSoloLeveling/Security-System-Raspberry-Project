@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import data from '../data/data1.json' 
+import un from '../data/un.json'
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
@@ -378,15 +379,15 @@ export const FinancialPrimaryYAxis = {
 
 export const LinePrimaryXAxis = {
   valueType: 'DateTime',
+  format: "dd-MM-yyyy HH:mm:ss",
   labelFormat: 'y',
-  intervalType: 'Years',
   edgeLabelPlacement: 'Shift',
   majorGridLines: { width: 0 },
   background: 'white',
 };
 
 export const LinePrimaryYAxis = {
-  labelFormat: '{value}%',
+  labelFormat: '{value}',
   rangePadding: 'None',
   minimum: 0,
   maximum: 100,
@@ -394,6 +395,7 @@ export const LinePrimaryYAxis = {
   lineStyle: { width: 0 },
   majorTickLines: { width: 0 },
   minorTickLines: { width: 0 },
+ 
 };
 
 export const customersGrid = [
@@ -514,45 +516,7 @@ export const links = [
         icon: <AiOutlineCalendar />,
       },
     ],
-  },
-  {
-    title: 'Charts',
-    links: [
-      {
-        name: 'line',
-        icon: <AiOutlineStock />,
-      },
-      {
-        name: 'area',
-        icon: <AiOutlineAreaChart />,
-      },
-
-      {
-        name: 'bar',
-        icon: <AiOutlineBarChart />,
-      },
-      {
-        name: 'pie',
-        icon: <FiPieChart />,
-      },
-      {
-        name: 'financial',
-        icon: <RiStockLine />,
-      },
-      {
-        name: 'color-mapping',
-        icon: <BsBarChart />,
-      },
-      {
-        name: 'pyramid',
-        icon: <GiLouvrePyramid />,
-      },
-      {
-        name: 'stacked',
-        icon: <AiOutlineBarChart />,
-      },
-    ],
-  },
+  }
 ];
 
 export const cartData = [
@@ -633,7 +597,7 @@ export const earningData = [
   },
   {
     icon: <GiIronMask />,
-    amount: 0,
+    amount: un,
     percentage: '+38%',
     title: 'Unknown',
     iconColor: 'rgb(228, 106, 118)',
@@ -3029,36 +2993,7 @@ export const scheduleData = [
   },
 ];
 
-export const lineChartData = [
-  [
-    { x: new Date(2005, 0, 1), y: 21 },
-    { x: new Date(2006, 0, 1), y: 24 },
-    { x: new Date(2007, 0, 1), y: 36 },
-    { x: new Date(2008, 0, 1), y: 38 },
-    { x: new Date(2009, 0, 1), y: 54 },
-    { x: new Date(2010, 0, 1), y: 57 },
-    { x: new Date(2011, 0, 1), y: 70 },
-  ],
-  [
-    { x: new Date(2005, 0, 1), y: 28 },
-    { x: new Date(2006, 0, 1), y: 44 },
-    { x: new Date(2007, 0, 1), y: 48 },
-    { x: new Date(2008, 0, 1), y: 50 },
-    { x: new Date(2009, 0, 1), y: 66 },
-    { x: new Date(2010, 0, 1), y: 78 },
-    { x: new Date(2011, 0, 1), y: 84 },
-  ],
 
-  [
-    { x: new Date(2005, 0, 1), y: 10 },
-    { x: new Date(2006, 0, 1), y: 20 },
-    { x: new Date(2007, 0, 1), y: 30 },
-    { x: new Date(2008, 0, 1), y: 39 },
-    { x: new Date(2009, 0, 1), y: 50 },
-    { x: new Date(2010, 0, 1), y: 70 },
-    { x: new Date(2011, 0, 1), y: 100 },
-  ],
-];
 export const dropdownData = [
   {
     Id: '1',
@@ -3081,11 +3016,44 @@ export const SparklineAreaData = [
 
 ];
 
+export const lineChartData = [
+  
+  [
+    { x: "8:00:00", y: 10},   //  x : time of activity   data.filter(obj => obj.gate==="Intruder").          y: number of valid
+    { x: "10:00:00", y: 20 },
+    { x: "12:00:00", y: 30 },
+    { x: "14:00:00", y: 10 },
+    { x: "16:00:00", y: 50 },
+    { x: "18:00:00", y: 70 },
+    { x: "20:00:00", y: 100 },
+  ],
+
+  [
+    { x: "8:00:00", y: 10 },   //  x : time of activity           y: number of valid
+    { x: "10:00:00", y: 20 },
+    { x: "12:00:00", y: 30 },
+    { x: "14:00:00", y: 39 },
+    { x: "16:00:00", y: 20 },
+    { x: "18:00:00", y: 70 },
+    { x: "20:00:00", y: 100 },
+  ],
+
+  [
+    { x: "8:00:00", y: 10 },   //  x : time of activity           y: number of valid
+    { x: "10:00:00", y: 20 },
+    { x: "12:00:00", y: 30 },
+    { x: "14:00:00", y: 39 },
+    { x: "16:00:00", y: 50 },
+    { x: "18:00:00", y: 40 },
+    { x: "20:00:00", y: 30 },
+  ]
+];
+
 export const lineCustomSeries = [
   { dataSource: lineChartData[0],
     xName: 'x',
     yName: 'y',
-    name: 'Germany',
+    name: 'Valid',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },
@@ -3093,7 +3061,7 @@ export const lineCustomSeries = [
   { dataSource: lineChartData[1],
     xName: 'x',
     yName: 'y',
-    name: 'England',
+    name: 'Intruder',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },
@@ -3101,7 +3069,7 @@ export const lineCustomSeries = [
   { dataSource: lineChartData[2],
     xName: 'x',
     yName: 'y',
-    name: 'India',
+    name: 'Unknown',
     width: '2',
     marker: { visible: true, width: 10, height: 10 },
     type: 'Line' },

@@ -49,7 +49,7 @@ def handle_telemetry(client, userdata, message):
         
         step = 1
         frames_count = 10
-        cam = cv2.VideoCapture('http://10.202.40.78:4747/video')
+        cam = cv2.VideoCapture('http://10.202.40.186:4747/video')
        
         currentframe = 0
         frame_per_second = cam.get(cv2.CAP_PROP_FPS) 
@@ -90,7 +90,7 @@ def handle_telemetry(client, userdata, message):
 
         step = 1
         frames_count = 10
-        cam = cv2.VideoCapture('http://10.202.40.78:4747/video')
+        cam = cv2.VideoCapture('http://10.202.40.186:4747/video')
        
         currentframe = 0
         frame_per_second = cam.get(cv2.CAP_PROP_FPS) 

@@ -10,7 +10,7 @@ const Orders = () => {
   const [pending, setPending] = React.useState(true);
   const [rows, setRows] = React.useState([]);
   const [perPage, setPerPage] = useState(10)
-  const reversedArray = Object.values(data).reverse();
+  const reversedArray = Object.values(data).reverse(); //filter(obj => obj.gate==="Valid")
   const columns =[
     {
       name: "Image Captured",

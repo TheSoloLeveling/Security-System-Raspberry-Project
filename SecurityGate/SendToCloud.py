@@ -40,9 +40,9 @@ while True:
         print("Valid password, Weclome back:")
         print("wait 10 seconds to enter password again:")
         GPIO.setup(27,GPIO.OUT)
-        GPIO.output(27,GPIO.LOW)
-        time.sleep(10)
         GPIO.output(27,GPIO.HIGH)
+        time.sleep(10)
+        GPIO.output(27,GPIO.LOW)
         state = 0
 
     elif (state == 2):
