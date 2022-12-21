@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import data from '../data/data1.json' 
 import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
@@ -609,10 +610,12 @@ export const chatData = [
   },
 ];
 
+
+
 export const earningData = [
   {
     icon: <GrValidate />,
-    amount: '39,354',
+    amount: data.filter(obj => obj.gate==="Valid").length,
     percentage: '-4%',
     title: 'Valid',
     iconColor: '#03C9D7',
@@ -621,7 +624,7 @@ export const earningData = [
   },
   {
     icon: <GiNinjaMask />,
-    amount: '4,396',
+    amount: data.filter(obj => obj.gate==="Intruder").length,
     percentage: '+23%',
     title: 'Intruder',
     iconColor: 'rgb(255, 244, 229)',
@@ -630,7 +633,7 @@ export const earningData = [
   },
   {
     icon: <GiIronMask />,
-    amount: '423,39',
+    amount: 0,
     percentage: '+38%',
     title: 'Unknown',
     iconColor: 'rgb(228, 106, 118)',

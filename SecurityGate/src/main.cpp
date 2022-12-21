@@ -47,6 +47,7 @@ void loop(){
         }
       digitCount = 0;
       myInt = 0;
+      
 
     }
   }

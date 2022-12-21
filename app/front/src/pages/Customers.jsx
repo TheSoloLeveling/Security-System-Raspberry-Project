@@ -3,7 +3,6 @@ import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page,
 import  DataTable, { createTheme } from "react-data-table-component"
 import { employeesData, employeesGrid } from '../data/dummy';
 import { Header } from '../components';
-import data from '../pages/data.json' 
 import { Border } from '@syncfusion/ej2-react-charts';
 
 const Customers = () => {
@@ -66,6 +65,7 @@ const Customers = () => {
         style: {
             paddingLeft: '8px', // override the cell padding for data cells
             paddingRight: '8px',
+            margin: '8px',
             justifyContent: 'center',
             borderrightStyle: 'solid',
 				    borderRightWidth: '3px',

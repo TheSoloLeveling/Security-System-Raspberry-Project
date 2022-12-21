@@ -27,7 +27,7 @@ const Scheduler = () => {
   return (
     <div className="flex ml-28 mt-10">
 
-      <object type="text/html" data="http://10.202.43.144:4747/" width="800px" height="600px" >
+      <object type="text/html" data="http://10.202.40.78:4747/" width="800px" height="600px" >
         </object>
     
     </div>

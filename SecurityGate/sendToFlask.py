@@ -14,9 +14,9 @@ client_id = "74ea23df-6639-44b0-bcd5-f3debb1bb18c"
 client_lightTelemetry_topic = client_id + '/lightTelemetry'
 client_command_topic = client_id + '/command'
 csvFilePath1= r'lightTelemetry.csv'
-jsonFilePath1 = r'data1.json'
+jsonFilePath1 = r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\data1.json'
 csvFilePath2 = r'cameraTelemetry.csv'
-jsonFilePath2 = r'data2.json'
+jsonFilePath2 = r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\data2.json'
 
 
 def csv_to_json(csvFilePath, jsonFilePath):
@@ -49,13 +49,14 @@ def handle_telemetry(client, userdata, message):
         
         step = 1
         frames_count = 10
-        cam = cv2.VideoCapture('http://10.202.40.12:4747/video')
-
+        cam = cv2.VideoCapture('http://10.202.40.78:4747/video')
+       
         currentframe = 0
         frame_per_second = cam.get(cv2.CAP_PROP_FPS) 
         frames_captured = 0
 
         while (True):
+            
             ret, frame = cam.read()
             if ret:
                 if currentframe > (step*frame_per_second):  
@@ -63,8 +64,8 @@ def handle_telemetry(client, userdata, message):
                     name = 'frame' + str(random.randint(1, 101)) + '.jpg'
                     
                     print(name)
-                    cv2.imwrite(name, frame)
-                    c = [name, datetime.now().strftime("%H:%M:%S")]
+                    cv2.imwrite(r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\{}'.format(name), frame)
+                    c = ["http://127.0.0.1:8080/" + name, datetime.now().strftime("%H:%M:%S")]
                     f = open('cameraTelemetry.csv', 'a', newline='')  
                     writer = csv.writer(f)
                     writer.writerow(c)
@@ -79,6 +80,7 @@ def handle_telemetry(client, userdata, message):
                 break
         cam.release()
         cv2.destroyAllWindows()
+        
         mqtt_client.publish(client_command_topic, command, qos=1)
 
     elif(payload['value'] == Access) :

@@ -2,7 +2,9 @@ from flask_restx import Api, Resource, fields, Namespace
 from flask import Flask, request, jsonify
 from models import Participant
 from flask_jwt_extended import jwt_required
-
+import json
+import csv
+import os
 
 participant_ns = Namespace('participant', description = "A namespace for participants")
 
@@ -34,18 +36,42 @@ class Signup(Resource):
 
         return jsonify({"message": "Participant created successfuly"}) 
 
-@participant_ns.route('/deleteParticipant/<int:id>')
+
+@participant_ns.route('/deleteData')
 class Signup(Resource):
 
     @participant_ns.expect(participant_model)
-    @participant_ns.marshal_list_with(participant_model)
-    def delete(self, id):
+    def get(self):
+
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\data1.json") as data_file:
+            data = json.load(data_file)
+
+        [data.pop(0) for item in list(data)]
+
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\data1.json", "w") as f:
+            json.dump(data, f)
+
         
-        p_to_delete = Participant.query.get_or_404(id)
+        with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\SecurityGate\lightTelemetry.csv", 'r') as input_csv:
+            reader = csv.reader(input_csv)
+            with open(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\SecurityGate\test.csv", 'w', newline='') as output_csv:
+                writer = csv.writer(output_csv)
+                for i, row in enumerate(reader):
+                    if i == 0:
+                        writer.writerow(row)
+                    else:
+                        continue
+        input_csv.close()
+        output_csv.close()
+        os.remove(r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\SecurityGate\lightTelemetry.csv")
+        
+        old_name = r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\SecurityGate\test.csv"
+        new_name = r"C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\SecurityGate\lightTelemetry.csv"
 
-        p_to_delete.delete()
+        os.rename(old_name, new_name)
 
-        return p_to_delete
+        return jsonify({"message": "Data deleted successfuly"}) 
+
 
 @participant_ns.route('/participants')
 class PartcipantsResource(Resource):
@@ -93,7 +119,6 @@ class PartcipantResource(Resource):
         return p_to_update
 
     @participant_ns.marshal_list_with(participant_model)
-    
     def delete(self, id):
         
         p_to_delete = Participant.query.get_or_404(id)

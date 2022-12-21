@@ -3,7 +3,7 @@ import { GridComponent, Inject, ColumnsDirective, ColumnDirective, Search, Page,
 import  DataTable, { createTheme } from "react-data-table-component"
 import { employeesData, employeesGrid } from '../data/dummy';
 import { Header } from '../components';
-import data from '../pages/data.json' 
+import data from '../data/data1.json' 
 import { Border } from '@syncfusion/ej2-react-charts';
 
 
@@ -12,6 +12,7 @@ const Employees = () => {
   const [pending, setPending] = React.useState(true);
   const [rows, setRows] = React.useState([]);
   const [perPage, setPerPage] = useState(10)
+  const reversedArray = Object.values(data).reverse();
 
   const columns =[
     {
@@ -24,7 +25,8 @@ const Employees = () => {
     },
     {
       name: "Time",
-      selector: (row) => row.timestamp
+      selector: (row) => row.timestamp,
+      sortable: true,
     }
   ]
 
@@ -98,7 +100,7 @@ useEffect(() => {
         <DataTable
           title="Recordings of the gate keypad"
           columns={columns}
-          data={data}
+          data={reversedArray}
           progressPending={pending}
           pagination
           customStyles={tableCustomStyles}

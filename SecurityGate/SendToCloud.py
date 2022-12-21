@@ -7,7 +7,7 @@ import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(17,GPIO.OUT)
+
 state = 0
 
 port = "/dev/rfcomm0"
@@ -35,24 +35,31 @@ mqtt_client.subscribe(client_command_topic, qos=1)
 mqtt_client.on_message = handle_command
 
 while True:
-
+    time.sleep(2)
     if (state == 1):
         print("Valid password, Weclome back:")
         print("wait 10 seconds to enter password again:")
+        GPIO.setup(27,GPIO.OUT)
+        GPIO.output(27,GPIO.LOW)
         time.sleep(10)
+        GPIO.output(27,GPIO.HIGH)
         state = 0
 
     elif (state == 2):
+        
         print("Invalid password, wait 10 seconds to enter again:")
+        GPIO.setup(17,GPIO.OUT)
         for i in range(0, 10):
             GPIO.output(17,GPIO.HIGH)
             time.sleep(0.5)
             GPIO.output(17,GPIO.LOW)
             time.sleep(0.5)
+
         GPIO.output(17,GPIO.LOW)  
         
         state = 0
     elif (state == 0):
+        
         print("Enter password in the keypad :")
         byte_data = ser.readline()
         string_data = byte_data.decode('UTF-8') #
