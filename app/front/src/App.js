@@ -75,7 +75,7 @@ const App = () => {
 
                 {/* apps  */}
                 <Route path="/VideoLive" element={<Calendar />} />
-                <Route path="/editor" element={<Editor />} />
+                <Route path="/CameraLive" element={<Editor />} />
                 <Route path="/calendar" element={<Calendar />} />
                 <Route path="/color-picker" element={<ColorPicker />} />
 

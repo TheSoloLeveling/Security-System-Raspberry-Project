@@ -61,7 +61,7 @@ def handle_telemetry(client, userdata, message):
             if ret:
                 if currentframe > (step*frame_per_second):  
                     currentframe = 0
-                    name = 'frame' + str(random.randint(1, 101)) + '.jpg'
+                    name = 'frame' + str(random.randint(1, 5000)) + '.jpg'
                     
                     print(name)
                     cv2.imwrite(r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\{}'.format(name), frame)
@@ -87,6 +87,41 @@ def handle_telemetry(client, userdata, message):
         command = json.dumps({'gate' : 'Valid', 'password' : payload['value'], 'timestamp' : datetime.now().strftime("%H:%M:%S")})
         data = ["Valid", payload['value'], datetime.now().strftime("%H:%M:%S")]
         print("Sending by cloud to gateway", command)
+
+        step = 1
+        frames_count = 10
+        cam = cv2.VideoCapture('http://10.202.40.78:4747/video')
+       
+        currentframe = 0
+        frame_per_second = cam.get(cv2.CAP_PROP_FPS) 
+        frames_captured = 0
+
+        while (True):
+            
+            ret, frame = cam.read()
+            if ret:
+                if currentframe > (step*frame_per_second):  
+                    currentframe = 0
+                    name = 'frame' + str(random.randint(1, 5000)) + '.jpg'
+                    
+                    print(name)
+                    cv2.imwrite(r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\{}'.format(name), frame)
+                    c = ["http://127.0.0.1:8080/" + name, datetime.now().strftime("%H:%M:%S")]
+                    f = open('cameraTelemetry.csv', 'a', newline='')  
+                    writer = csv.writer(f)
+                    writer.writerow(c)
+                    f.close()
+                    csv_to_json(csvFilePath2, jsonFilePath2)
+                    break          
+                    frames_captured+=1
+                    if frames_captured>frames_count-1:
+                        ret = False
+                currentframe += 1           
+            if ret==False:
+                break
+        cam.release()
+        cv2.destroyAllWindows()
+
         mqtt_client.publish(client_command_topic, command, qos=1)
 
     e = open('lightTelemetry.csv', 'a', newline='')  

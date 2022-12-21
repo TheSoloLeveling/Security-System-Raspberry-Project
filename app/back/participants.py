@@ -6,6 +6,7 @@ import json
 import csv
 import os
 
+
 participant_ns = Namespace('participant', description = "A namespace for participants")
 
 participant_model = participant_ns.model(
@@ -34,7 +35,19 @@ class Signup(Resource):
 
         new_user.save()
 
-        return jsonify({"message": "Participant created successfuly"}) 
+        return jsonify({"message": "Participant created successfuly"})
+
+
+@participant_ns.route('/predict')
+class Signup(Resource):
+
+    def post(self):
+        data = request.get_json()
+        model = tf.keras.models.load_model('model.h5')
+
+        prediction = model.predict(data).tolist()
+
+        return jsonify({"predict": prediction}) 
 
 
 @participant_ns.route('/deleteData')
