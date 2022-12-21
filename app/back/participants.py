@@ -5,7 +5,10 @@ from flask_jwt_extended import jwt_required
 import json
 import csv
 import os
-
+import tensorflow as tf
+from PIL import Image
+import cv2
+import numpy as np
 
 participant_ns = Namespace('participant', description = "A namespace for participants")
 
@@ -44,10 +47,29 @@ class Signup(Resource):
     def post(self):
         data = request.get_json()
         model = tf.keras.models.load_model('model.h5')
+        
+        new_height = 200
+        new_width = 200
+        print(data)
+        filename = os.path.basename(data)
+        folder = r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data'
+        link = os.path.join(folder, filename)
+        image = Image.open(link)
+            
+        resized_image = image.resize((new_width, new_height)) 
+        resized_image.save(r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\avatar_resized.jpg')
 
-        prediction = model.predict(data).tolist()
+        image = cv2.imread(r'C:\Users\bouzi\Desktop\Github\Security-System-Raspberry-Project\app\front\src\data\avatar_resized.jpg')
 
-        return jsonify({"predict": prediction}) 
+        image = np.array(image,dtype='float32')
+        image = image.reshape((-1, 200, 200, 3))
+
+        prediction = model.predict(image).tolist()
+        labels = np.array(['anas', 'amina', 'omar', 'Unknown'])
+        predictionslabel = np.argmax(prediction)
+        label = labels[predictionslabel]
+
+        return jsonify({"predicted label": label}) 
 
 
 @participant_ns.route('/deleteData')

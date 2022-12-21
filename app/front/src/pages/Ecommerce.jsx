@@ -36,14 +36,6 @@ const Ecommerce = () => {
     setData(participants)
   }
 
-  async function predict() {
-    
-    const URL = "http://127.0.0.1:5000/participant/predict"
-    const response = await fetch(URL)
-
-    const prediction= await response.json()
-    console.log("prediction", prediction)
-  }
 
   async function emptyJSON() {
     console.log("HI")
@@ -52,7 +44,6 @@ const Ecommerce = () => {
 
     const participants = await response.json()
     
-    console.log(participants)
   }
 
   useEffect(() => {
@@ -159,9 +150,7 @@ const Ecommerce = () => {
                             // You can use the key and value to check for a condition
                             const newTimestamp = date.toTimeString().split(' ')[0];
                           
-                            console.log(newTimestamp)
                             if (value.timestamp === newTimestamp) {
-                              console.log("working")
                               return <img height="100px" width="160px" alt={"name"} src={value.image} />
                             } else {
                               return 

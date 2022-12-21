@@ -6,6 +6,7 @@ import { Header } from '../components';
 import { Border } from '@syncfusion/ej2-react-charts';
 import {Button} from '../components';
 import camera from '../data/data2.json'
+import { HiPlay } from 'react-icons/hi';
 
 const Customers = () => {
   const [pending, setPending] = React.useState(true);
@@ -14,7 +15,13 @@ const Customers = () => {
   const [perPage, setPerPage] = useState(10)
   const [valueP, setValueP] = useState("waiting for model init ...........")
   const reversedArray = Object.values(camera).reverse();
+  const [showAlertValid, setShowAlertValid] = useState(false);
+  const [showAlertIntruder, setShowAlertIntruder] = useState(false);
+  const [showAlertBasic , setShowAlertBasic ] = useState(true);
+ 
+  const [alertP, setAlertP] = useState("");
   
+
   async function fetchTableData() {
     setPending(true)
     const URL = "http://127.0.0.1:5000/participant/participants"
@@ -25,8 +32,39 @@ const Customers = () => {
     setPending(false)
   }
 
+  const loginUser=(image)=>{
+    console.log("image", image)
+    
+    const requestOptions={
+        method:"POST",
+        headers:{
+            'content-type':'application/json'
+        },
+        body:JSON.stringify(image)
+    }
+     
+    fetch('/participant/predict',requestOptions)
+    .then(res=>res.json())
+    .then(data=>{
+        setShowAlertValid(true);
+        setShowAlertBasic(false)
+        setAlertP("the person detected is : " + data["predicted label"])
+        
+        
+    })
+    .catch(error => {
+      setShowAlertIntruder(true)
+      setShowAlertBasic(false)
+      setAlertP("Not Enough Memory, we are using weak Local machine :(  .Come back later")
+      console.error(error);
+      
+    });
+
+ }
+
   useEffect(() => {
     fetchTableData()
+    
   }, [])
   
 
@@ -40,19 +78,16 @@ const Customers = () => {
     
     {
       name: "Run model",
-      cell: row => <Button
-      color="white" 
-      bgColor={"green"}
-      text="Run model"
-      borderRadius="10px"
-      
-      /> ,
-    },
-    {
-      name: "Name of the person Identified",
-      cell: row => <div> <p>{valueP}</p>
-            
-        </div>
+      cell: row =>
+        <button
+          type="button"
+          style={{ backgroundColor: "green", color: "white",borderRadius: "15px" }}
+          className={` text-${48} p-3 w-${12} hover:drop-shadow-xl hover:bg-${"red"}`}
+          onClick={() => loginUser(row.image)}
+        >
+          <HiPlay className='mx-auto'/> Run model
+        </button>
+    ,
     }
   ]
 
@@ -124,7 +159,24 @@ useEffect(() => {
 }, []);
 
   return (
+    
     <div className='p-6'>
+
+      {showAlertBasic  && (
+        <div className="bg-blue-300 text-white p-4 rounded-md">
+          {valueP}
+        </div>
+      )}
+      {showAlertIntruder && !showAlertValid && (
+        <div className="bg-red-500 text-white p-4 rounded-md">
+          {alertP}
+        </div>
+      )}
+      {showAlertValid && !showAlertIntruder && (
+        <div className="bg-green-500 text-white p-4 rounded-md">
+          {alertP}
+        </div>
+      )}
       <div>
         <DataTable
           title="All Valid Participants "
